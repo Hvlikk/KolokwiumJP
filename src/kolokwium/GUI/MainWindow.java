@@ -5,6 +5,12 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
 
+    public static int WIDTH = 800;
+    public static int HEIGHT = 800;
+
+    private DrawingPanelBase drganie1;
+
+
     public MainWindow(){
         initUI();
     }
@@ -13,9 +19,9 @@ public class MainWindow extends JFrame {
     private void initUI(){
         setTitle("Rectangle signal");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000,1000);
+        setSize(WIDTH,HEIGHT);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setLocationRelativeTo(null);
-
         JPanel sliderPanel = new JPanel();
         JPanel controlPanel = new JPanel();
         JButton startButton = new JButton("Start");
@@ -26,7 +32,8 @@ public class MainWindow extends JFrame {
         JLabel freqLabel = new JLabel("Freq: ");
         JLabel amplitLabel = new JLabel("Amplituda: ");
         JLabel wypLabel = new JLabel("Wypelnienie: ");
-
+        drganie1 = new DrawingPanelBase();
+        JScrollPane scrollPane = new JScrollPane(drganie1);
         controlPanel.setLayout(new GridLayout(2, 4));
         sliderPanel.setLayout(new GridLayout(3, 2));
         sliderPanel.add(freqLabel);
@@ -38,7 +45,10 @@ public class MainWindow extends JFrame {
         controlPanel.add(sliderPanel);
         controlPanel.add(startButton);
         controlPanel.add(stopButton);
-        add(controlPanel, BorderLayout.SOUTH);
+        add(scrollPane, BorderLayout.CENTER);
+        scrollPane.add(drganie1);
+
+        //add(controlPanel, BorderLayout.SOUTH);
 
         setVisible(true);
     }

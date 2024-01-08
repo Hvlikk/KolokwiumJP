@@ -3,7 +3,10 @@ package kolokwium.Signal;
 import java.awt.*;
 
 public class Drganie {
-    private int x, y, length, amplitude;
+    private int x;
+    private int y;
+    private int length;
+    private int amplitude;
     private static int dx; //
     private Color color;
 
@@ -13,20 +16,17 @@ public class Drganie {
         this.length = length;
         this.amplitude = amplitude;
         this.color = color;
-        dx = 5;
+        dx = 10;
     }
 
     public int getX() {
         return x;
     }
 
-    public int getY() {
-        return y;
-    }
 
     public void draw(Graphics g){
-        int x = getX();
-        int y = getY();
+        int x = this.x;
+        int y = this.y;
         g.setColor(color);
         g.drawLine(x, y, x + length, y);
         x += length;
@@ -39,6 +39,6 @@ public class Drganie {
     }
 
     public void updateDx(){
-        dx -= length;
+        x -= length;
     }
 }
