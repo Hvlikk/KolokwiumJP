@@ -9,11 +9,12 @@ public class Drganie {
     private int amplitude;
     private static int dx; //
     private Color color;
+    private int MIN_FREQ = 1;
 
     public Drganie(int x, int y, int length, int amplitude, Color color){
         this.x = x;
         this.y = y;
-        this.length = length;
+        this.length = Math.max(length, MIN_FREQ);
         this.amplitude = amplitude;
         this.color = color;
         dx = 10;
@@ -39,6 +40,6 @@ public class Drganie {
     }
 
     public void updateDx(){
-        x -= length;
+        x -= dx;
     }
 }

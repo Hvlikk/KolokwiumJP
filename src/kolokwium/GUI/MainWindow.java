@@ -1,14 +1,16 @@
 package kolokwium.GUI;
 
+import kolokwium.Signal.RectSignal;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
 
-    public static int WIDTH = 800;
-    public static int HEIGHT = 800;
+    public static int WIDTH = 900;
+    public static int HEIGHT = 900;
 
-    private DrawingPanelBase drganie1;
+    private DrawingPanelBase drganie1, drganie2, drganie3;
 
 
     public MainWindow(){
@@ -19,36 +21,19 @@ public class MainWindow extends JFrame {
     private void initUI(){
         setTitle("Rectangle signal");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(WIDTH,HEIGHT);
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setSize(new Dimension(MainWindow.WIDTH, MainWindow.HEIGHT));
+        setLayout(new GridLayout(1, 3));
         setLocationRelativeTo(null);
-        JPanel sliderPanel = new JPanel();
-        JPanel controlPanel = new JPanel();
-        JButton startButton = new JButton("Start");
-        JButton stopButton = new JButton("Stop");
-        JSlider freqSlider = new JSlider(0, 1000000,0);
-        JSlider amplitudeSlider = new JSlider(0, 150000, 0);
-        JSlider wypSlider = new JSlider(0, 150000, 0);
-        JLabel freqLabel = new JLabel("Freq: ");
-        JLabel amplitLabel = new JLabel("Amplituda: ");
-        JLabel wypLabel = new JLabel("Wypelnienie: ");
-        drganie1 = new DrawingPanelBase();
-        JScrollPane scrollPane = new JScrollPane(drganie1);
-        controlPanel.setLayout(new GridLayout(2, 4));
-        sliderPanel.setLayout(new GridLayout(3, 2));
-        sliderPanel.add(freqLabel);
-        sliderPanel.add(freqSlider);
-        sliderPanel.add(amplitLabel);
-        sliderPanel.add(amplitudeSlider);
-        sliderPanel.add(wypLabel);
-        sliderPanel.add(wypSlider);
-        controlPanel.add(sliderPanel);
-        controlPanel.add(startButton);
-        controlPanel.add(stopButton);
-        add(scrollPane, BorderLayout.CENTER);
-        scrollPane.add(drganie1);
 
-        //add(controlPanel, BorderLayout.SOUTH);
+        RectSignal rectSignal1 = new RectSignal(30, 30,Color.RED, "Worker1");
+        drganie1 = new DrawingPanelBase(rectSignal1, "Worker1");
+        add(drganie1);
+       RectSignal rectSignal2 = new RectSignal(500, 500,Color.GREEN, "Worker2");
+        drganie2 = new DrawingPanelBase(rectSignal2, "Worker2");
+        add(drganie2);
+        RectSignal rectSignal3 = new RectSignal(30,14, Color.MAGENTA, "Worker3");
+        drganie3 = new DrawingPanelBase(rectSignal3, "Worker3");
+        add(drganie3);
 
         setVisible(true);
     }

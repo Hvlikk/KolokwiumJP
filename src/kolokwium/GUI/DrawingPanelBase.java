@@ -6,20 +6,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawingPanelBase extends JPanel {
-    private RectSignal rectSignal1, rectSignal2;
-    private int delay = 1000;
+    private RectSignal rectSignal;
+    private int delay = 100;
+    private String threadName;
+
+    public DrawingPanelBase(RectSignal rectSignal, String threadName){
+        this.rectSignal = rectSignal;
+        this.threadName = threadName;
+        setSize(MainWindow.WIDTH / 3, MainWindow.HEIGHT);
+        threadStart();
+    }
 
 
-    public DrawingPanelBase(){
-        setSize(MainWindow.WIDTH, MainWindow.HEIGHT);
-
+    private void threadStart(){
         Thread firstSignal = new Thread(() -> {
-            rectSignal1 = new RectSignal(20, 10, Color.BLUE);
             while(true) {
-                rectSignal1.updatePanel();
-                repaint();
                 try {
-                    Thread.sleep(delay);
+              //  System.out.println(threadName + " is currently working!");
+                rectSignal.updatePanel();
+                repaint();
+                Thread.sleep(delay);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -29,10 +35,11 @@ public class DrawingPanelBase extends JPanel {
         firstSignal.start();
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
-        rectSignal1.draw(g);
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, MainWindow.WIDTH, MainWindow.HEIGHT);
+        rectSignal.draw(g);
         g.setColor(Color.BLACK);
         g.drawLine(0, MainWindow.HEIGHT/2, MainWindow.WIDTH, MainWindow.HEIGHT/2);
     }

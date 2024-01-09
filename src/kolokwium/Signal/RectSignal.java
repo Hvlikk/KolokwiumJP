@@ -13,20 +13,22 @@ public class RectSignal {
     private Color color;
     private ArrayList<Drganie> drgania;
     private int drganieLength;
+    private String threadNumber;
 
 
-    public RectSignal(int freq, int amplitude, Color color){
+    public RectSignal(int freq, int amplitude, Color color, String threadNumber){
         this.freq = freq;
         this.amplitude = amplitude;
         this.color = color;
+        this.threadNumber = threadNumber;
         drgania = new ArrayList<>();
-        drganieLength = MainWindow.WIDTH / freq * 2;
+        drganieLength = MainWindow.WIDTH / 30;
         drgania.add(new Drganie(MainWindow.WIDTH - drganieLength, (MainWindow.HEIGHT - amplitude)/2, drganieLength/2, amplitude, color));
     }
 
     public void draw(Graphics g){
-        for(Drganie drgania : drgania){
-            drgania.draw(g);
+        for(Drganie drganie : drgania){
+            drganie.draw(g);
         }
     }
 
@@ -36,9 +38,8 @@ public class RectSignal {
         }
 
         Drganie lastDrganie = drgania.get(drgania.size() - 1);
-        if(lastDrganie.getX() + drganieLength < MainWindow.WIDTH)
-            drgania.add(new Drganie(lastDrganie.getX() + drganieLength, (MainWindow.WIDTH - amplitude)/2, drganieLength/2, amplitude, color));
-
+        drgania.add(new Drganie(lastDrganie.getX() + drganieLength, (MainWindow.WIDTH - amplitude)/2, drganieLength/2, amplitude, color));
+        System.out.println(threadNumber + " added new part! :)");
         Drganie firstDrganie = drgania.get(0);
         if(firstDrganie.getX() + drganieLength < 0)
             drgania.remove(firstDrganie);
