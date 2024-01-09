@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class DrawingPanelBase extends JPanel {
     private RectSignal rectSignal;
-    private int delay = 100;
+    private int delay = 400;
     private String threadName;
 
     public DrawingPanelBase(RectSignal rectSignal, String threadName){

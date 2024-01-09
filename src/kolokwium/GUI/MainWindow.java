@@ -25,13 +25,13 @@ public class MainWindow extends JFrame {
         setLayout(new GridLayout(1, 3));
         setLocationRelativeTo(null);
 
-        RectSignal rectSignal1 = new RectSignal(30, 30,Color.RED, "Worker1");
+        RectSignal rectSignal1 = new RectSignal(3, 30,Color.RED, "Worker1");
         drganie1 = new DrawingPanelBase(rectSignal1, "Worker1");
         add(drganie1);
-       RectSignal rectSignal2 = new RectSignal(500, 500,Color.GREEN, "Worker2");
+       RectSignal rectSignal2 = new RectSignal(15, 20,Color.GREEN, "Worker2");
         drganie2 = new DrawingPanelBase(rectSignal2, "Worker2");
         add(drganie2);
-        RectSignal rectSignal3 = new RectSignal(30,14, Color.MAGENTA, "Worker3");
+        RectSignal rectSignal3 = new RectSignal(18,50, Color.MAGENTA, "Worker3");
         drganie3 = new DrawingPanelBase(rectSignal3, "Worker3");
         add(drganie3);
 

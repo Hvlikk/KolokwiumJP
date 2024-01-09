@@ -22,7 +22,7 @@ public class RectSignal {
         this.color = color;
         this.threadNumber = threadNumber;
         drgania = new ArrayList<>();
-        drganieLength = MainWindow.WIDTH / 30;
+        drganieLength = MainWindow.WIDTH / (3 * freq);
         drgania.add(new Drganie(MainWindow.WIDTH - drganieLength, (MainWindow.HEIGHT - amplitude)/2, drganieLength/2, amplitude, color));
     }
 
@@ -39,6 +39,8 @@ public class RectSignal {
 
         Drganie lastDrganie = drgania.get(drgania.size() - 1);
         drgania.add(new Drganie(lastDrganie.getX() + drganieLength, (MainWindow.WIDTH - amplitude)/2, drganieLength/2, amplitude, color));
+
+
         System.out.println(threadNumber + " added new part! :)");
         Drganie firstDrganie = drgania.get(0);
         if(firstDrganie.getX() + drganieLength < 0)
